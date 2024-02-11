@@ -1,0 +1,14 @@
+{
+  "name": "candid-parser-wasm",
+  "version": "1.0.0",
+  "description": "This WASM library provides bindings to (and helper functions for) `candid_parser` crate.",
+  "author": "Artyom Titov",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf pkg && wasm-pack build --target web",
+    "publish": "wasm-pack publish"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
+}
