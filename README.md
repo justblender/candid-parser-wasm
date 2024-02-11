@@ -2,8 +2,8 @@
 
 This WASM library provides bindings to (and helper functions for) `candid_parser` crate.
 
-- Get actor functions with their signatures;
-- Encode/decode function arguments into `Uint8Array`;
+- Read all Candid actor functions along with their signature (mode, argument and return types);
+- Encode or decode Candid function arguments into `Uint8Array` or `string`;
 - Serialize Candid into JSON format.
 
 ## Install

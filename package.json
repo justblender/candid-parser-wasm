@@ -4,9 +4,12 @@
   "description": "This WASM library provides bindings to (and helper functions for) `candid_parser` crate.",
   "author": "Artyom Titov",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/justblender/candid-parser-wasm"
+  },
   "scripts": {
     "build": "rimraf pkg && wasm-pack build --target web",
-    "publish": "wasm-pack publish"
+    "publish": "npm run build && wasm-pack publish"
   },
   "devDependencies": {
     "rimraf": "^5.0.5"
