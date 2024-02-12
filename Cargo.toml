@@ -2,7 +2,7 @@
 name = "candid-parser-wasm"
 authors = ["Artyom Titov"]
 description = "WASM bindings to `candid_parser` crate"
-version = "1.0.0"
+version = "1.0.2"
 edition = "2021"
 
 [lib]

@@ -8,7 +8,7 @@
     "url": "https://github.com/justblender/candid-parser-wasm"
   },
   "scripts": {
-    "build": "rimraf pkg && wasm-pack build --target web",
+    "build": "rimraf pkg && wasm-pack build --target bundler",
     "publish": "npm run build && wasm-pack publish"
   },
   "devDependencies": {
