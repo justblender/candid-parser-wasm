@@ -1,36 +1,52 @@
 # candid-parser-wasm
 
-This WASM library provides bindings to (and helper functions for) `candid_parser` crate.
+This package provides bindings to (and helper functions for) the `candid_parser` crate.
 
-- Read all Candid actor functions along with their signature (mode, argument and return types);
-- Encode or decode Candid function arguments into `Uint8Array` or `string`;
-- Serialize Candid into JSON format.
+![version][version-image]
+![downloads][dl-image]
 
-## Install
+## Features
+- Read all actor functions along with their signature (mode, argument and return types);
+- Encode or decode the arguments of a (shared) actor function into `Uint8Array` or `string`;
+- Serialize Candid into a JSON string.
+
+## Installation
 
 `npm install candid-parser-wasm`
 
 ## Usage
 
-Before you can use this library in a browser environment, it is recommended that you install `vite-plugin-wasm` for Vite or set up `asyncWebAssembly` in Webpack.
+> [!IMPORTANT] 
+> Before you can use this library in your Vite app, it is recommended that you first install `vite-plugin-wasm`.
 
 ```js
-import init, { parseCandid } from "candid-parser-wasm";
+import { parseCandid } from "candid-parser-wasm";
 
-// Use `fetchCandid` from `@dfinity/agent` to fetch Candid source for a given deployed canister ID
-const source = `
+// TIP: You can use `fetchCandid` from `@dfinity/agent`
+// to fetch Candid source for a given canister ID on-demand.
+
+const parser = parseCandid(`
   service : {
     hello : (text) -> (text) query;
   };
-`;
+`);
 
-const parser = await init().then(() => parseCandid(source));
-const encoded = parser.encodeIdlArgs("hello", '("world")');
-//    ^ returns `Uint8Array` with encoded bytes
-const decoded = parser.decodeIdlArgs("hello", encoded);
-//    ^ '("world")'
-const functions = parser.getFunctions();
-//    ^ {hello: {modes: [{ kind: "query" }], args: ["text"], rets: ["text"]}}
-const json = parser.toJSON();
-//    ^ returns a fully serialized IDL in JSON format (as `string`)
+const encoded: Uint8Array = parser.encodeIdlArgs("hello", '("world")');
+//    ^ `Uint8Array` with encoded bytes
+
+const decoded: string = parser.decodeIdlArgs("hello", encoded);
+//    ^ ("world")
+
+const functions: Record<string, any> = parser.getFunctions();
+//    ^ { hello: {modes: [{ kind: "query" }], args: ["text"], rets: ["text"]} }
+
+const json: string = parser.toJSON();
+//    ^ fully serialized IDL in a JSON string
 ```
+
+## Contributing
+
+Contributions are welcome. Please submit your pull requests or open issues to propose changes or report bugs.
+
+[version-image]: https://img.shields.io/npm/v/candid-parser-wasm
+[dl-image]: https://img.shields.io/npm/dw/candid-parser-wasm
